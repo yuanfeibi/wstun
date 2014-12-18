@@ -27,7 +27,7 @@ SOFTWARE.
 
   _ = require("under_score");
 
-  optimist = require('optimist').usage("\nRun websocket tunnel server or client.\n  To run server: wstunnel -s 8080\n  To run client: wstunnel -t localport:host:port ws://wshost:wsport\nNow connecting to localhost:localport is same as connecting to host:port on wshost\nIf websocket server is behind ssl proxy, then use \"wss://host:port\" in client mode\nFor security, you can \"lock\" the tunnel destination on server side, for eample:\n  wstunnel -s 8080 -t host:port\nServer will tunnel incomming websocket connection to host:port only, so client can just run\n  wstunnel -t localport ws://wshost:port\nIf client run:\n  wstunnel -t localpost:otherhost:otherport ws://wshost:port\n  * otherhost:otherport is ignored, tunnel destination is still \"host:port\" as specified on server.\n").string("s").string("t").alias('t', "tunnel").describe('s', 'run as server, specify listen port').describe('tunnel', 'run as tunnel client, specify localport:host:port');
+  optimist = require('optimist').usage("\nRun websocket tunnel and reverse tunnel such server or client.\nTo run websocket tunnel server: wstt.js -s 8080\nTo run websocket tunnel client: wstt.js -t localport:host:port ws://wshost:wsport\nNow connecting to localhost:localport is same as connecting to host:port on wshost\nIf websocket server is behind ssl proxy, then use \"wss://host:port\" in client mode\nFor security, you can \"lock\" the tunnel destination on server side, for eample:\nwstunnel -s 8080 -t host:port\nServer will tunnel incomming websocket connection to host:port only, so client can just run\n wstunnel -t localport ws://wshost:port\nIf client run:\n  wstunnel -t localpost:otherhost:otherport ws://wshost:port\n  * otherhost:otherport is ignored, tunnel destination is still \"host:port\" as specified on server.\n").string("s").string("t").alias('t', "tunnel").describe('s', 'run as server, specify listen port').describe('tunnel', 'run as tunnel client, specify localport:host:port');
 
   argv = optimist.argv;
 
@@ -45,7 +45,6 @@ SOFTWARE.
       server = new wst.server;
     }
     server.start(argv.s);
-
   }else if (argv.t) {
     require("../lib/https_override");
     wst = require("../lib/wst");
