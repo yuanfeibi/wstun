@@ -59,14 +59,12 @@ SOFTWARE.
     }
   }else if (argv.r) {
     if (argv.s){
-      console.log("ECHO DEBUG:::: STARTED wst.server_reverse");
       require("../lib/https_override");
       wst = require("../lib/wst");
       server = new wst.server_reverse;
       server.start(argv.s);
     }
     else{
-      console.log("ECHO DEBUG:::: STARTED wst.client_reverse");
       require("../lib/https_override");
       wst = require("../lib/wst");
       client = new wst.client_reverse;
