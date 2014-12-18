@@ -6,11 +6,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "https://github.com/mhzed/wstunnel",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mhzed/wstunnel"
+  },
   "author": {
     "name": "zed zhou",
-    "url": "http://mhzed.com",
-    "email": "mhzedd@gmail.com"
+    "email": "mhzedd@gmail.com",
+    "url": "http://mhzed.com"
   },
   "homepage": "https://github.com/mhzed/wstunnel",
   "keywords": [
@@ -18,8 +21,9 @@
     "tunnel"
   ],
   "license": "MIT",
-  "engines" : { "node" : "~0.10.21" },
-
+  "engines": {
+    "node": "~0.10.21"
+  },
   "dependencies": {
     "websocket": "1.0.8",
     "under_score": "0.1.0",
@@ -28,5 +32,29 @@
   "devDependencies": {},
   "bin": {
     "wstunnel": "./bin/wstt.js"
-  }
+  },
+  "gitHead": "b1b462ebae896caa2fe367192582ce9bcc8c91e1",
+  "bugs": {
+    "url": "https://github.com/mhzed/wstunnel/issues"
+  },
+  "_id": "wstunnel@1.0.2",
+  "_shasum": "0bcb5444ce82cbdd3870cbfb37b2ca64fb236fa2",
+  "_from": "wstunnel@",
+  "_npmVersion": "1.4.24",
+  "_npmUser": {
+    "name": "mhzed",
+    "email": "minhongz@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "mhzed",
+      "email": "mhzedd@gmail.com"
+    }
+  ],
+  "dist": {
+    "shasum": "0bcb5444ce82cbdd3870cbfb37b2ca64fb236fa2",
+    "tarball": "http://registry.npmjs.org/wstunnel/-/wstunnel-1.0.2.tgz"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/wstunnel/-/wstunnel-1.0.2.tgz"
 }
