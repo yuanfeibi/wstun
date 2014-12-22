@@ -20,9 +20,11 @@ For running a websocket tunnel client:
 In the above example, client picks the final tunnel destination, similar to ssh tunnel.  Alternatively for security reason, you can lock tunnel destination on the server end, example:
 
 **Server:**
+        
         ./wstt.js -s 8080 -t 2.2.2.2:33
 
 **Client:**
+        
         ./wstt.js -t 33 ws://server:8080
 
 In both examples, connection to localhost:33 on client will be tunneled to 2.2.2.2:33 on server via websocket connection in between.
