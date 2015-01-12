@@ -1,32 +1,3 @@
 {
-  "name": "wstunnel",
-  "version": "1.0.2",
-  "description": "tcp tunnel over websocket",
-  "main": "./lib/wst.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": "https://github.com/mhzed/wstunnel",
-  "author": {
-    "name": "zed zhou",
-    "url": "http://mhzed.com",
-    "email": "mhzedd@gmail.com"
-  },
-  "homepage": "https://github.com/mhzed/wstunnel",
-  "keywords": [
-    "websocket",
-    "tunnel"
-  ],
-  "license": "MIT",
-  "engines" : { "node" : "~0.10.21" },
 
-  "dependencies": {
-    "websocket": "1.0.8",
-    "under_score": "0.1.0",
-    "optimist": "0.3.5"
-  },
-  "devDependencies": {},
-  "bin": {
-    "wstunnel": "./bin/wstt.js"
-  }
 }

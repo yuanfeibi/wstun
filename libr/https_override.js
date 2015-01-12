@@ -23,12 +23,17 @@ SOFTWARE.
 */
 
 (function() {
-  module.exports = {
-    server: require("./wst_server"),
-    client: require("./wst_client"),
-    server_reverse : require("./wst_server_reverse"),
-    client_reverse : require("./wst_client_reverse"),
+  var https, old_https_request;
+
+  https = require("https");
+
+  old_https_request = https.request;
+
+  https.request = function() {
+    var options;
+    options = arguments[0];
+    options.rejectUnauthorized = false;
+    return old_https_request.apply(void 0, Array.apply(null, arguments));
   };
 
 }).call(this);
-

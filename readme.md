@@ -1,32 +1,43 @@
-# wstunnel
+#wstunnel
 
-Establish a TCP socket tunnel over web socket connection, for circumventing strict firewalls.
 
-## Installation
+Tools to establish a TCP socket tunnel over websocket connection, and to enstabilish a reverse tunnel over websocket connection, for circumventing the problems to the direct connection to the host behind a strict firewalls or the without of public IP.
 
-npm install wstunnel
+##Usage
 
-## Usage
+##Using wstt.js executable
+Using the *wstt.js* executable located in *bin* directory:
 
-Run the websocket tunnel server at port 8080:
+For running a websocket tunnel server:  
 
-    wstunnel -s 8080
+    ./wstt.js -s 8080
 
-Run the websocket tunnel client:
 
-    wstunnel -tunnel 33:2.2.2.2:33 ws://host:8080
+For running a websocket tunnel client: 
 
-In the above example, client picks the final tunnel destination, similar to ssh tunnel.  Alternatively for security
-reason, you can lock tunnel destination on the server end, example:
+    ./wstt.js -tunnel 33:2.2.2.2:33 ws://host:8080
 
-    Server:
-        wstunnel -s 8080 -t 2.2.2.2:33
+In the above example, client picks the final tunnel destination, similar to ssh tunnel.  Alternatively for security reason, you can lock tunnel destination on the server end, example:
 
-    Client:
-        wstunnel -t 33 ws://server:8080
+**Server:**
+        
+        ./wstt.js -s 8080 -t 2.2.2.2:33
 
-In both examples, connection to localhost:33 on client will be tunneled to 2.2.2.2:33 on server via websocket
-connection in between.
+**Client:**
+        
+        ./wstt.js -t 33 ws://server:8080
+
+In both examples, connection to localhost:33 on client will be tunneled to 2.2.2.2:33 on server via websocket connection in between.
+
+For running a websocket reverse tunnel server:
+
+    ./wstt.js -r -s 8080
+
+For running a websocket reverse tunnel client:
+
+    ./wstt.js -r 6666:2.2.2.2:33 ws://server:8080
+
+In the above example the client tells the server to open a TCP server on port 6666 and all connection on this port are tunneled to the client that is directely connected to 2.2.2.2:33
 
 ## Use case
 
@@ -36,7 +47,7 @@ be so strict as to break HTML5.
 The tunnel server currently supports plain tcp socket only, for SSL support, use NGINX, shown below:
 
 On server:
-    wstunnel -s 8080
+    ./wstt.js -s 8080
 
 On server, run nginx (>=1.3.13) with sample configuration:
 
@@ -66,21 +77,21 @@ On server, run nginx (>=1.3.13) with sample configuration:
 
 Then on client:
 
-    wstunnel -t 99:targethost:targetport wss://mydomain.com
+    ./wstt.js -t 99:targethost:targetport wss://mydomain.com
 
 
 ### OpenVPN use case
 
 Suppose on the server you have OpenVpn installed on the default port 1194,  then run wstunnel as such:
 
-    wstunnel -s 8888 -t 127.0.0.1:1194
+    ./wstt.js -s 8888 -t 127.0.0.1:1194
     
 Now on the server, you have a websocket server listening on 8888, any connection to 8888 will be forwarded to  
 127.0.0.1:1194, the OpenVpn port.
 
 Now on client, you run:
 
-    wstunnel -t 1194 ws://server:8888
+    ./wstt.js -t 1194 ws://server:8888
   
 Then launch the OpenVpn client, connect to localhost:1194 will be same as connect to server's 1194 port.
 
