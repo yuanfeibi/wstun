@@ -3,7 +3,44 @@
 
 Tools to establish a TCP socket tunnel over websocket connection, and to enstabilish a reverse tunnel over websocket connection, for circumventing the problems to the direct connection to the host behind a strict firewalls or the without of public IP.
 
-##Usage
+##Usage in Node
+
+###Server example
+```JavaScript   
+var wts = require("./lib/wst");
+
+//hostname and port used for non tunnelled connection 
+server = new wts.server('hostname',port); 
+//port for websocket
+server.start(port);
+``` 
+###Client example
+```JavaScript   
+var wts = require("./lib/wst");
+
+client = new wts.client();
+//remoteport is referes to hostname:port in server
+client.start(localport,'ws://remotehost:port');
+```
+
+###Reverse Server example
+```JavaScript   
+var wts = require("./lib/wst");
+
+//hostname and port used for non tunnelled connection 
+reverse_server = new wts.server_reverse('hostname',port); 
+//port for websocket
+server.start(port);
+``` 
+###Reverse Client example
+```JavaScript   
+var wts = require("./lib/wst");
+
+reverse_client = new wts.client_reverse();
+//wsHostUrl is referes to hostname:port in server, portTunel is the port opened on reverse websocket server
+//remoteAddr is the local or remote connection 
+client.start(portTunnel, wsHostUrl, remoteAddr);
+```
 
 ##Using wstt.js executable
 Using the *wstt.js* executable located in *bin* directory:
