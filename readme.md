@@ -1,7 +1,7 @@
 #wstunnel
 
 
-Tools to establish a TCP socket tunnel over websocket connection, and to enstabilish a reverse tunnel over websocket connection, for circumventing the problems to the direct connection to the host behind a strict firewalls or the without of public IP.
+Tools to establish a TCP socket tunnel over websocket connection, and to enstabilish a reverse tunnel over websocket connection, for circumventing the problems of direct connections to the host behind a strict firewalls or without a public IP.
 
 ##Usage in Node
 
