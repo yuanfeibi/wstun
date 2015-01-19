@@ -4,42 +4,43 @@
 Tools to establish a TCP socket tunnel over websocket connection, and to enstabilish a reverse tunnel over websocket connection, for circumventing the problems of direct connections to the host behind a strict firewalls or without a public IP.
 
 ##Usage in Node
+###Installation
+npm install node-reverse-wstunnel
 
 ###Server example
 ```JavaScript   
-var wts = require("./lib/wst");
+var wts = require("node-reverse-wstunnel");
 
-//hostname and port used for non tunnelled connection 
-server = new wts.server('hostname',port); 
-//port for websocket
+server = new wts.server(); 
+//the port of the websocket server 
 server.start(port);
 ``` 
 ###Client example
 ```JavaScript   
-var wts = require("./lib/wst");
+var wts = require("node-reverse-wstunnel");
 
 client = new wts.client();
-//remoteport is referes to hostname:port in server
-client.start(localport,'ws://remotehost:port');
+//localport is the opened port of the localhost for the tunnel
+//remotehost:port is the service that will be tunneled
+client.start(localport,'ws://websocketserverhost:port', remotehost:port);
 ```
 
 ###Reverse Server example
 ```JavaScript   
-var wts = require("./lib/wst");
+var wts = require("node-reverse-wstunnel");
 
-//hostname and port used for non tunnelled connection 
-reverse_server = new wts.server_reverse('hostname',port); 
-//port for websocket
-server.start(port);
+reverse_server = new wts.server_reverse(); 
+//the port of the websocket server 
+reverse_server.start(port);
 ``` 
 ###Reverse Client example
 ```JavaScript   
-var wts = require("./lib/wst");
+var wts = require("node-reverse-wstunnel");
 
 reverse_client = new wts.client_reverse();
-//wsHostUrl is referes to hostname:port in server, portTunel is the port opened on reverse websocket server
-//remoteAddr is the local or remote connection 
-client.start(portTunnel, wsHostUrl, remoteAddr);
+//portTunnel is the port that will be opened on the websocket server 
+//remotehost:port is the service that will be reverse tunneled
+client.start(portTunnel, 'ws://websocketserverhost:port', remotehost:port);
 ```
 
 ##Using wstt.js executable
