@@ -11,7 +11,6 @@ npm install node-reverse-wstunnel
 ```JavaScript   
 var wts = require("node-reverse-wstunnel");
 
-//hostname and port used for non tunnelled connection 
 server = new wts.server(); 
 //the port of the websocket server 
 server.start(port);
@@ -22,7 +21,7 @@ var wts = require("node-reverse-wstunnel");
 
 client = new wts.client();
 //localport is the opened port of the localhost for the tunnel
-//remotehost:port is the service to tunnel
+//remotehost:port is the service that will be tunneled
 client.start(localport,'ws://websocketserverhost:port', remotehost:port);
 ```
 
@@ -39,8 +38,8 @@ reverse_server.start(port);
 var wts = require("node-reverse-wstunnel");
 
 reverse_client = new wts.client_reverse();
-//portTunnel is the opened por on the websocket server 
-//remotehost:port is the service to revese tunneled
+//portTunnel is the port that will be opened on the websocket server 
+//remotehost:port is the service that will be reverse tunneled
 client.start(portTunnel, 'ws://websocketserverhost:port', remotehost:port);
 ```
 
