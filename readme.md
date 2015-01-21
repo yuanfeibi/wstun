@@ -40,7 +40,7 @@ var wts = require("node-reverse-wstunnel");
 reverse_client = new wts.client_reverse();
 //portTunnel is the port that will be opened on the websocket server 
 //remotehost:port is the service that will be reverse tunneled
-client.start(portTunnel, 'ws://websocketserverhost:port', remotehost:port);
+reverse_client.start(portTunnel, 'ws://websocketserverhost:port', remotehost:port);
 ```
 
 ##Using wstt.js executable
