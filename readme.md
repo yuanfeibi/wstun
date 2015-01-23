@@ -1,11 +1,18 @@
-#wstunnel
+#Tunnel and Reverse Tunnel Client & Server on WebSocket Implementation for node
+[![npm version](https://badge.fury.io/js/node-reverse-wstunnel.svg)](http://badge.fury.io/js/node-reverse-wstunnel)
 
+[![NPM](https://nodei.co/npm/node-reverse-wstunnel.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/node-reverse-wstunnel/)
+
+[![NPM](https://nodei.co/npm-dl/node-reverse-wstunnel.png?months=1&height=3)](https://nodei.co/npm/node-reverse-wstunnel/)
+
+##Overview
 
 Tools to establish a TCP socket tunnel over websocket connection, and to enstabilish a reverse tunnel over websocket connection, for circumventing the problems of direct connections to the host behind a strict firewalls or without a public IP.
 
-##Usage in Node
-###Installation
+##Installation
 npm install node-reverse-wstunnel
+
+##Usage in node
 
 ###Server example
 ```JavaScript   
@@ -43,7 +50,7 @@ reverse_client = new wts.client_reverse();
 reverse_client.start(portTunnel, 'ws://websocketserverhost:port', remotehost:port);
 ```
 
-##Using wstt.js executable
+###Usage of wstt.js executable
 Using the *wstt.js* executable located in *bin* directory:
 
 For running a websocket tunnel server:  
