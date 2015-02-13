@@ -24,7 +24,7 @@
   	"author": "Andrea Rocco Lotronto <alotronto@unime.it>",
   	"license": [
   		{
-  			"type": "MIT",
+  			"type": "Apache-2.0",
   			"url": "https://github.com/MDSLab/wstunnel/blob/master/LICENSE"
   		}
   	],
