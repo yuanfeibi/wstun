@@ -1,6 +1,6 @@
 {
 	"name": "node-reverse-wstunnel",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "Tools to establish a TCP socket tunnel over websocket connection, and to enstabilish a reverse tunnel over websocket connection, for circumventing the problems of direct connections to the host behind a strict firewalls or without a public IP.",
 	"main": "index.js",
   	"scripts": {
@@ -24,7 +24,7 @@
   	"author": "Andrea Rocco Lotronto <alotronto@unime.it>",
   	"license": [
   		{
-  			"type": "MIT",
+  			"type": "Apache-2.0",
   			"url": "https://github.com/MDSLab/wstunnel/blob/master/LICENSE"
   		}
   	],
