@@ -1,6 +1,6 @@
 //###############################################################################
 //##
-//# Copyright (C) 2014-2015 Andrea Rocco Lotronto
+//# Copyright (C) 2014-2015 Andrea Rocco Lotronto, 2017 Nicola Peditto
 //##
 //# Licensed under the Apache License, Version 2.0 (the "License");
 //# you may not use this file except in compliance with the License.
@@ -53,13 +53,11 @@ optimist = require('optimist').usage("\nRun websocket tunnel and reverse tunnel 
     }
   }else if (argv.r) {
     if (argv.s){
-      require("../lib/https_override");
       wst = require("../lib/wst");
-      server = new wst.server_reverse;
+      server = new wst.server_reverse(argv.x, argv.key, argv.cert);
       server.start(argv.s);
     }
     else{
-      require("../lib/https_override");
       wst = require("../lib/wst");
       client = new wst.client_reverse;
       wsHost = _.last(argv._);
