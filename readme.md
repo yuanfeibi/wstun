@@ -1,20 +1,20 @@
-#Tunnel and Reverse Tunnel Client & Server on WebSocket Implementation for node
+# Tunnel and Reverse Tunnel Client & Server on WebSocket Implementation for node
 [![npm version](https://badge.fury.io/js/node-reverse-wstunnel.svg)](http://badge.fury.io/js/node-reverse-wstunnel)
 
 [![NPM](https://nodei.co/npm/node-reverse-wstunnel.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/node-reverse-wstunnel/)
 
 [![NPM](https://nodei.co/npm-dl/node-reverse-wstunnel.png?months=1&height=3)](https://nodei.co/npm/node-reverse-wstunnel/)
 
-##Overview
+## Overview
 
 Tools to establish a TCP socket tunnel over websocket connection, and to enstabilish a reverse tunnel over websocket connection, for circumventing the problems of direct connections to the host behind a strict firewalls or without a public IP.
 
-##Installation
+## Installation
 npm install node-reverse-wstunnel
 
-##Usage in node
+## Usage in node
 
-###Server example
+### Server example
 ```JavaScript   
 var wts = require("node-reverse-wstunnel");
 
@@ -22,7 +22,7 @@ server = new wts.server();
 //the port of the websocket server 
 server.start(port);
 ``` 
-###Client example
+### Client example
 ```JavaScript   
 var wts = require("node-reverse-wstunnel");
 
@@ -32,7 +32,7 @@ client = new wts.client();
 client.start(localport,'ws://websocketserverhost:port', remotehost:port);
 ```
 
-###Reverse Server example
+### Reverse Server example
 ```JavaScript   
 var wts = require("node-reverse-wstunnel");
 
@@ -40,7 +40,7 @@ reverse_server = new wts.server_reverse();
 //the port of the websocket server 
 reverse_server.start(port);
 ``` 
-###Reverse Client example
+### Reverse Client example
 ```JavaScript   
 var wts = require("node-reverse-wstunnel");
 
@@ -50,7 +50,7 @@ reverse_client = new wts.client_reverse();
 reverse_client.start(portTunnel, 'ws://websocketserverhost:port', remotehost:port);
 ```
 
-###Usage of wstt.js executable
+### Usage of wstt.js executable
 Using the *wstt.js* executable located in *bin* directory:
 
 For running a websocket tunnel server:  
