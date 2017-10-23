@@ -1,7 +1,7 @@
 {
-	"name": "node-reverse-wstunnel",
-	"version": "0.1.2",
-	"description": "Tools to establish a TCP socket tunnel over websocket connection, and to enstabilish a reverse tunnel over websocket connection, for circumventing the problems of direct connections to the host behind a strict firewalls or without a public IP.",
+	"name": "@mdslab/reverse-wstunnel",
+	"version": "1.0.0",
+	"description": "A set of tools to establish TCP tunnels (or TCP reverse tunnels) over Websocket connections for circumventing the problem of directly connect to hosts behind a strict firewall or without public IP. It also supports WebSocket Secure (wss) connections.",
 	"main": "index.js",
   	"scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,26 +10,43 @@
     	"websocket": ">=1.0.17",
     	"optimist": ">=0.6.1",
     	"under_score": ">=0.1.0"
-
     },
     "repository": {
-    "type": "git",
-    "url": "git://github.com/MDSLab/wstunnel.git"
+		"type": "git",
+		"url": "https://github.com/MDSLab/reverse-wstunnel.git"
   	},
   	"keywords": [
-    "tunnel",
-    "reverse",
-    "WebSocket"
+		"tunnel",
+		"reverse",
+		"WebSocket"
   	],
-  	"author": "Andrea Rocco Lotronto <alotronto@unime.it>",
+	"author": "Nicola Peditto <npeditto@unime.it>",
+	"contributors": [
+		{
+			"name": "Dario Bruneo",
+			"email": "dbruneo@unime.it"
+		},
+		{
+			"name": "Francesco Longo",
+			"email": "flongo@unime.it"
+		},
+		{
+			"name": "Giovanni Merlino",
+			"email": "gmerlino@unime.it"
+		},
+		{
+			"name": "Andrea Rocco Lotronto",
+			"email": "andrealotronto@gmail.com"
+		}
+	],
   	"license": [
   		{
   			"type": "Apache-2.0",
-  			"url": "https://github.com/MDSLab/wstunnel/blob/master/LICENSE"
+  			"url": "https://github.com/MDSLab/reverse-wstunnel/blob/master/LICENSE"
   		}
   	],
   	"bugs": {
-    	"url": "https://github.com/MDSLab/wstunnel/issues"
+    	"url": "https://github.com/MDSLab/reverse-wstunnel/issues"
   	},
-  	"homepage": "https://github.com/MDSLab/wstunnel"
+  	"homepage": "https://github.com/MDSLab/reverse-wstunnel"
 }

@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 //###############################################################################
 //##
 //# Copyright (C) 2014-2015 Andrea Rocco Lotronto, 2017 Nicola Peditto
@@ -23,7 +25,7 @@ var _ = require("under_score");
 
 optimist = require('optimist').usage("\n" +
     "Run websocket tunnel and reverse tunnel such server or client.\n" +
-    "To run websocket tunnel server: wstt.js -s 8080\nTo run websocket tunnel client: wstt.js -t localport:host:port ws://wshost:wsport\n" +
+    "To run websocket tunnel server: wstun.js -s 8080\nTo run websocket tunnel client: wstun.js -t localport:host:port ws://wshost:wsport\n" +
     "Now connecting to localhost:localport is same as connecting to host:port on wshost\n" +
     "If websocket server is behind ssl proxy, then use \"wss://host:port\" in client mode\n" +
     "For security, you can \"lock\" the tunnel destination on server side, for eample:\n" +
@@ -45,17 +47,17 @@ wst = require("../lib/wst");
 
 if (argv.s && !argv.r) {
   
-  // WS tunnel server side
-  if (argv.t) {
-    _ref = argv.t.split(":"), host = _ref[0], port = _ref[1];
-    //server = new wst.server(host, port, argv.ssl, argv.key, argv.cert);
-    server = new wst.server({dstHost:dstHost, dstPort:dstPort, ssl:https_flag, key:key, cert:cert});
-  }
-  else {
-    server = new wst.server({ssl:argv.ssl, key:argv.key, cert:argv.cert});
-  }
+    // WS tunnel server side
+    if (argv.t) {
+        _ref = argv.t.split(":"), host = _ref[0], port = _ref[1];
+        server_opts = {dstHost:dstHost, dstPort:dstPort, ssl:https_flag, key:key, cert:cert};
+    }
+    else {
+        server_opts = {ssl:argv.ssl, key:argv.key, cert:argv.cert};
+    }
 
-  server.start(argv.s);
+    server = new wst.server(server_opts);
+    server.start(argv.s);
 
 }else if (argv.t) {
 
@@ -80,7 +82,8 @@ if (argv.s && !argv.r) {
   if (argv.s){
 
     // Server side
-    server = new wst.server_reverse({ssl:argv.ssl, key:argv.key, cert:argv.cert});
+    server_opts = {ssl:argv.ssl, key:argv.key, cert:argv.cert};
+    server = new wst.server_reverse(server_opts);
     server.start(argv.s);
 
   }
