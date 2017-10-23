@@ -1,18 +1,18 @@
-#Tunnel and Reverse Tunnel Client & Server on WebSocket Implementation for node
+# Tunnel and Reverse Tunnel Client & Server on WebSocket Implementation for node
 
 
-##Overview
+## Overview
 
 A set of tools to establish TCP tunnels (or TCP reverse tunnels) over Websocket connections for circumventing the problem of directly connect to hosts behind a strict firewall or without public IP. It also supports WebSocket Secure (wss) connections.
 
-##Installation
+## Installation
 npm install reverse-wstunnel
 
 
 
-##Usage in NodeJS
+## Usage in NodeJS
 
-###Server example
+### Server example
 ```JavaScript
 var wstun = require("reverse-wstunnel");
 
@@ -24,8 +24,8 @@ server = new wstun.server({ssl:true, key:"<PATH-PRIVATE-KEY>.pem", cert:"<PATH-P
 
 //the port of the websocket server
 server.start(<PORT>)
-``` 
-###Client example
+```
+### Client example
 ```JavaScript
 var wstun = require("reverse-wstunnel");
 
@@ -42,7 +42,7 @@ wsHost = 'wss://wsServer:wsPort';
 client.start(localPort, wsHost, 'remoteHost:remotePort');
 ```
 
-###Reverse Server example
+### Reverse Server example
 ```JavaScript
 var wstun = require("reverse-wstunnel");
 
@@ -56,7 +56,7 @@ reverse_server = new wstun.server_reverse({ssl:true, key:"<PATH-PRIVATE-KEY>.pem
 reverse_server.start(<PORT>);
 
 ``` 
-###Reverse Client example
+### Reverse Client example
 ```JavaScript   
 var wstun = require("reverse-wstunnel");
 
@@ -75,7 +75,7 @@ reverse_client.start(portTunnel, wsHost, 'remoteHost:remotePort');
 
 
 
-##Usage from command-line
+## Usage from command-line
 Using the *wstun.js* executable located in *bin* directory:
 
 For running a websocket tunnel server:  
