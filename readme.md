@@ -12,65 +12,66 @@ npm install @mdslab/wstun
 
 ## Usage (from a Node.js application)
 
-### Server example
+### Instantiation of a tunnel server 
 ```JavaScript
-var wstun = require("reverse-wstunnel");
+var wstun = require("@mdslab/wstun");
 
-// HTTP
+// without security
 server = new wstun.server();
 
-// or HTTPS
-server = new wstun.server({ssl:true, key:"<PATH-PRIVATE-KEY>.pem", cert:"<PATH-PUBLIC-KEY>.pem"});
+// or with security (<PRIVATE-KEY-PATH> and <PUBLIC-KEY-PATH> are the paths of the private and public keys in .pem formats)
+server = new wstun.server({ssl:true, key:"<PRIVATE-KEY-PATH>", cert:"<PUBLIC-KEY-PATH>"});
 
-//the port of the websocket server
+//start the server (<PORT> is the listening port)
 server.start(<PORT>)
 ```
-### Client example
+
+### Implementation of a tunnel client
 ```JavaScript
-var wstun = require("reverse-wstunnel");
+var wstun = require("@mdslab/wstun");
 
 client = new wstun.client();
 
-// HTTP
-wsHost = 'ws://wsServer:wsPort';
+// without security
+wstunHost = 'ws://wstunServerIP:wstunPort';
 
-// HTTPS
-wsHost = 'wss://wsServer:wsPort';
+// or with security 
+wstunHost = 'wss://wstunServerIP:wstunPort';
 
-// 'localPort' is the opened port of the localhost for the tunnel
-// 'remoteHost:remotePortport' is the service that will be tunneled
-client.start(localPort, wsHost, 'remoteHost:remotePort');
+// <localPort> is the port on the localhost on which the tunneled service will be reachable
+// <remoteHost>:<remotePort> is the endpoint of the service to be tunneled
+client.start(<localPort>, wstunHost, '<remoteHost>:<remotePort>');
 ```
 
-### Reverse Server example
+### Instantiation of a reverse tunnel server
 ```JavaScript
-var wstun = require("reverse-wstunnel");
+var wstun = require("@mdslab/wstun");
 
-// HTTP
+// without security
 reverse_server = new wstun.server_reverse();
 
-// or HTTPS
-reverse_server = new wstun.server_reverse({ssl:true, key:"<PATH-PRIVATE-KEY>.pem", cert:"<PATH-PUBLIC-KEY>.pem"});
+// or with security (<PRIVATE-KEY-PATH> and <PUBLIC-KEY-PATH> are the paths of the private and public keys in .pem formats)
+reverse_server = new wstun.server_reverse({ssl:true, key:"<PRIVATE-KEY-PATH>", cert:"<PUBLIC-KEY-PATH>"});
 
-//the port of the websocket server
+//start the server (<PORT> is the listening port)
 reverse_server.start(<PORT>);
 
 ``` 
-### Reverse Client example
+### Implementation of a reverse tunnel client
 ```JavaScript   
 var wstun = require("reverse-wstunnel");
 
 reverse_client = new wstun.client_reverse();
 
-// HTTP
-wsHost = 'ws://wsServer:wsPort';
+// without security
+wstunHost = 'ws://wstunServerIP:wstunPort;
 
-// HTTPS
-wsHost = 'wss://wsServer:wsPort';
+// or with security 
+wstunHost = 'wss:/wstunServerIP:wstunPort';
 
-// 'portTunnel' is the port that will be opened on the websocket server
-// 'remoteHost:remotePort' is the service that will be reverse tunneled
-reverse_client.start(portTunnel, wsHost, 'remoteHost:remotePort');
+// <publicPort> is the port on the reverse tunnel server on which the tunneled service will be reachable
+// <remoteHost>:<remotePort> is the endpoint of the service to be reverse tunneled
+reverse_client.start(<publicPort>, wstunHost, '<remoteHost>:<remotePort>');
 ```
 
 ## Usage from command-line
