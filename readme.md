@@ -64,7 +64,7 @@ var wstun = require("reverse-wstunnel");
 reverse_client = new wstun.client_reverse();
 
 // without security
-wstunHost = 'ws://wstunServerIP:wstunPort;
+wstunHost = 'ws://wstunServerIP:wstunPort';
 
 // or with security 
 wstunHost = 'wss:/wstunServerIP:wstunPort';
