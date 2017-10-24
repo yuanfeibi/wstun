@@ -1,4 +1,4 @@
-# Tunnel and Reverse Tunnel Client & Server on WebSocket Implementation for node
+# Tunnels and Reverse Tunnels on WebSocket for Node.js
 
 
 ## Overview
@@ -7,8 +7,6 @@ A set of tools to establish TCP tunnels (or TCP reverse tunnels) over Websocket 
 
 ## Installation
 npm install reverse-wstunnel
-
-
 
 ## Usage in NodeJS
 
