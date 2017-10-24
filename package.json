@@ -1,5 +1,5 @@
 {
-	"name": "@mdslab/reverse-wstunnel",
+	"name": "@mdslab/wstun",
 	"version": "1.0.0",
 	"description": "A set of tools to establish TCP tunnels (or TCP reverse tunnels) over Websocket connections for circumventing the problem of directly connect to hosts behind a strict firewall or without public IP. It also supports WebSocket Secure (wss) connections.",
 	"main": "index.js",
@@ -13,7 +13,7 @@
     },
     "repository": {
 		"type": "git",
-		"url": "https://github.com/MDSLab/reverse-wstunnel.git"
+		"url": "https://github.com/MDSLab/wstun.git"
   	},
   	"keywords": [
 		"tunnel",
@@ -42,11 +42,11 @@
   	"license": [
   		{
   			"type": "Apache-2.0",
-  			"url": "https://github.com/MDSLab/reverse-wstunnel/blob/master/LICENSE"
+  			"url": "https://github.com/MDSLab/wstun/blob/master/LICENSE"
   		}
   	],
   	"bugs": {
-    	"url": "https://github.com/MDSLab/reverse-wstunnel/issues"
+    	"url": "https://github.com/MDSLab/wstun/issues"
   	},
-  	"homepage": "https://github.com/MDSLab/reverse-wstunnel"
+  	"homepage": "https://github.com/MDSLab/wstun"
 }
