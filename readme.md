@@ -3,7 +3,7 @@
 
 ## Overview
 
-A set of tools to establish TCP tunnels (or TCP reverse tunnels) over Websocket connections for circumventing the problem of directly connect to hosts behind a strict firewall or without public IP. It also supports WebSocket Secure (wss) connections.
+A set of Node.js tools to establish TCP tunnels (or TCP reverse tunnels) over Websocket connections for circumventing the problem of directly connect to hosts behind a strict firewall or without public IP. It also supports WebSocket Secure (wss) connections.
 
 ## Installation
 ```
