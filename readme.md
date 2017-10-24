@@ -7,10 +7,10 @@ A set of Node.js tools to establish TCP tunnels (or TCP reverse tunnels) over We
 
 ## Installation
 ```
-npm install reverse-wstunnel
+npm install @mdslab/wstun
 ```
 
-## Usage in NodeJS
+## Usage (from a Node.js application)
 
 ### Server example
 ```JavaScript
@@ -72,8 +72,6 @@ wsHost = 'wss://wsServer:wsPort';
 // 'remoteHost:remotePort' is the service that will be reverse tunneled
 reverse_client.start(portTunnel, wsHost, 'remoteHost:remotePort');
 ```
-
-
 
 ## Usage from command-line
 Using the *wstun.js* executable located in *bin* directory:
