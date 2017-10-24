@@ -79,7 +79,7 @@ A command line tool (wstun.js) is also available in the bin directory.
 
 Examples about how to run a tunnel server:
 ```
-//without secutity
+//without security
 bin/wstun.js -s 8080
 
 //with security
