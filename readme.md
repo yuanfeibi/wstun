@@ -74,46 +74,58 @@ wstunHost = 'wss:/wstunServerIP:wstunPort';
 reverse_client.start(<publicPort>, wstunHost, '<remoteHost>:<remotePort>');
 ```
 
-## Usage from command-line
-Using the *wstun.js* executable located in *bin* directory:
+## Usage (from command line)
+A command line tool (wstun.js) is also available in the bin directory.
 
-For running a websocket tunnel server:  
+Examples about how to run a tunnel server:
+```
+//without secutity
+bin/wstun.js -s 8080
 
-    //over HTTP
-    ./wstun.js -s 8080
+//with security
+bin/wstun.js -s 8080 --ssl=true --key="<PRIVATE-KEY-PATH>" --cert="<PUBLIC-KEY-PATH>"
+```
+Examples about how to run a tunnel client:
+```
+//without security
+bin/wstun.js -t 33:2.2.2.2:33 ws://wstunServerIP:8080 
 
-    //over HTTPS
-    ./wstun.js -s 8080 --ssl=true --key="<PATH-PRIVATE-KEY>.pem" --cert="<PATH-PUBLIC-KEY>.pem"
+//with security
+bin/wstun.js -t 33:2.2.2.2:33 wss://wstunServerIP:8080
+```
+In both examples, connections to localhost:33 on the client will be tunneled to 2.2.2.2:33 through the Websocket connection with the server. Note that the decision about the final destination of the tunnel is up to the client. Alternatively, it is possible to lock the final destination of the tunnel on the server side. 
 
-For running a websocket tunnel client: 
+Examples about how to run a tunnel server locking the final tunnel destination: 
+```
+//without security 
+./wstun.js -s 8080 -t 2.2.2.2:33
 
-    ./wstun.js -t 33:2.2.2.2:33 ws://host:8080 (or wss://host:8080 for HTTPS)
+//with security
+bin/wstun.js -s 8080 -t 2.2.2.2:33 --ssl=true --key="<PRIVATE-KEY-PATH>" --cert="<PUBLIC-KEY-PATH>"
+```
+Examples about how to run a tunnel client when the final tunnel destination has been locked by the server:
+```
+//without security
+bin/wstun.js -t 33 ws://wstunServerIP:8080 
 
-In the above example, client picks the final tunnel destination, similar to ssh tunnel.  Alternatively for security reason, you can lock tunnel destination on the server end, example:
+//with security
+bin/wstun.js -t 33 wss://wstunServerIP:8080
+```
 
-**Server:**
-        
-        ./wstun.js -s 8080 -t 2.2.2.2:33
+Examples about how to run a reverse tunnel server:
+```
+//without security
+bin/wstun.js -r -s 8080
 
-**Client:**
-        
-        ./wstun.js -t 33 ws://server:8080 (or wss://server:8080 for HTTPS)
+//with security
+bin/wstun.js -r -s 8080 --ssl=true --key="<PRIVATE-KEY-PATH>" --cert="<PUBLIC-KEY-PATH>"
+```
+Examples about how to run a reverse tunnel client:
+```
+//without security
+bin/wstun.js -r 6666:2.2.2.2:33 ws://server:8080 
 
-In both examples, connection to localhost:33 on client will be tunneled to 2.2.2.2:33 on server via websocket connection in between.
-
-
-**Reverse tunnels**
-
-For running a websocket reverse tunnel server:
-
-    // over HTTP
-    ./wstun.js -r -s 8080
-
-    // over HTTPS
-    ./wstun.js -r -s 8080 --ssl=true --key="<PATH-PRIVATE-KEY>.pem" --cert="<PATH-PUBLIC-KEY>.pem"
-
-For running a websocket reverse tunnel client:
-
-    ./wstun.js -r 6666:2.2.2.2:33 ws://server:8080 (or wss://server:8080 for HTTPS)
-
-In the above example the client tells the server to open a TCP server on port 6666 and all connection on this port are tunneled to the client that is directely connected to 2.2.2.2:33
+//with security 
+bin/wstun.js -r 6666:2.2.2.2:33 wss://server:8080
+```
+In the above examples, the client asks the server to open a TCP server on port 6666 and all connections on this port are tunneled to the client that is directely connected to 2.2.2.2:33.
