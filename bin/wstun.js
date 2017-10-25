@@ -43,7 +43,7 @@ optimist = require('optimist').usage("\n" +
 
 argv = optimist.argv;
 
-wst = require("../lib/wst");
+wst = require("../lib/wrapper");
 
 if (argv.s && !argv.r) {
   
