@@ -23,23 +23,14 @@ var portTunnel , argv, client, host, localport, optimist, port, server, wsHost, 
 
 var _ = require("under_score");
 
-optimist = require('optimist').usage("\n" +
-    "Run websocket tunnel and reverse tunnel such server or client.\n" +
-    "To run websocket tunnel server: wstun.js -s 8080\nTo run websocket tunnel client: wstun.js -t localport:host:port ws://wshost:wsport\n" +
-    "Now connecting to localhost:localport is same as connecting to host:port on wshost\n" +
-    "If websocket server is behind ssl proxy, then use \"wss://host:port\" in client mode\n" +
-    "For security, you can \"lock\" the tunnel destination on server side, for eample:\n" +
-    "wstunnel -s 8080 -t host:port\n" +
-    "Server will tunnel incomming websocket connection to host:port only, so client can just run\n" +
-    "wstunnel -t localport ws://wshost:port\n" +
-    "If client run:\n" +
-    "wstunnel -t localpost:otherhost:otherport ws://wshost:port\n" +
-    "* otherhost:otherport is ignored, tunnel destination is still \"host:port\" as specified on server.\n"
-).string("s").describe('s', 'run as server, specify listen port')
-    .string("t").alias('t', "tunnel").describe('tunnel', 'run as tunnel client, specify localport:host:port')
+optimist = require('optimist').usage("Tunnels and reverse tunnels over WebSocket.\n" +
+    "\nUsage: https://github.com/MDSLab/wstun/blob/master/readme.md")
+    .string("s").alias('s', "server").describe('s', 'run as server, specify listen port')
+    .string("t").alias('t', "tunnel").describe('t', 'run as tunnel client, specify localport:host:port')
+    .string("r").alias('r', "reverse").describe('r', 'run in reverse tunneling mode')
     .string("ssl").describe('ssl', '\"true\" | \"false\" to enable|disable HTTPS communication.')
-    .string("key").describe('key', '[only with --ssl=true] path to private key certificate.')
-    .string("cert").describe('cert', '[only with --ssl=true] path to public key certificate.');
+    .string("key").describe('key', '[only with --ssl="true"] path to private key certificate.')
+    .string("cert").describe('cert', '[only with --ssl="true"] path to public key certificate.');
 
 argv = optimist.argv;
 
