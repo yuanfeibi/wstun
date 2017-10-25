@@ -33,6 +33,6 @@
   },
   "homepage": "https://github.com/MDSLab/wstun",
   "bin": {
-    "wstun": "wstun.js"
+    "wstun": "./bin/wstun.js"
   }
 }
