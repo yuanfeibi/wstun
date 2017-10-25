@@ -1,4 +1,4 @@
-# Tunnels and Reverse Tunnels on WebSocket for Node.js
+# Tunnels and Reverse Tunnels over WebSocket for Node.js
 
 
 ## Overview
