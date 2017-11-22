@@ -25,7 +25,7 @@ var _ = require("under_score");
 
 optimist = require('optimist').usage("Tunnels and reverse tunnels over WebSocket.\n" +
     "\nUsage: https://github.com/MDSLab/wstun/blob/master/readme.md")
-    .string("s").alias('s', "server").describe('s', 'run as server, specify listen port')
+    .string("s").alias('s', "server").describe('s', 'run as server, specify listening port')
     .string("t").alias('t', "tunnel").describe('t', 'run as tunnel client, specify localport:host:port')
     .boolean("r").alias('r', "reverse").describe('r', 'run in reverse tunneling mode')
     .string("ssl").describe('ssl', '\"true\" | \"false\" to enable|disable HTTPS communication.')
