@@ -10,6 +10,8 @@ A set of Node.js tools to establish TCP tunnels (or TCP reverse tunnels) over We
 npm install @mdslab/wstun
 ```
 
+or using Docker container following this [guide](https://github.com/MDSLab/wstun/blob/master/docs/docker.md).
+
 ## Usage (from a Node.js application)
 
 ### Instantiation of a tunnel server 
