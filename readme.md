@@ -10,7 +10,6 @@ A set of Node.js tools to establish TCP tunnels (or TCP reverse tunnels) over We
 npm install @mdslab/wstun
 ```
 
-<<<<<<< HEAD
 ## Usage (from a Node.js application)
 
 ### Instantiation of a tunnel server 
