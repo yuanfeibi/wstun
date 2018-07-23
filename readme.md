@@ -10,8 +10,7 @@ A set of Node.js tools to establish TCP tunnels (or TCP reverse tunnels) over We
 npm install @mdslab/wstun
 ```
 
-or using Docker container following this [guide](https://github.com/MDSLab/wstun/blob/master/docs/docker.md).
-
+<<<<<<< HEAD
 ## Usage (from a Node.js application)
 
 ### Instantiation of a tunnel server 
@@ -131,3 +130,7 @@ Examples about how to run a reverse tunnel client:
 ./wstun.js -r6666:2.2.2.2:33 wss://server:8080
 ```
 In the above examples, the client asks the server to open a TCP server on port 6666 and all connections on this port are tunneled to the client that is directely connected to 2.2.2.2:33.
+
+
+## Logging system
+WSTUN uses Log4js library to manage its logs in /var/log/wstun/
