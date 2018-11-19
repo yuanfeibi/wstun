@@ -1,5 +1,6 @@
-# Tunnels and Reverse Tunnels over WebSocket for Node.js
+# WSTUN - Tunnels and Reverse Tunnels over WebSocket for Node.js
 
+[![npm version](https://badge.fury.io/js/%40mdslab%2Fwstun.svg)](https://badge.fury.io/js/%40mdslab%2Fwstun)
 
 ## Overview
 
