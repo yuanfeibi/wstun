@@ -20,10 +20,17 @@
 
 
 log4js = require('log4js');
-log4js.loadAppender('file');
-logfile = '/var/log/wstun/wstun.log';
-loglevel = 'debug';
-log4js.addAppender(log4js.appenders.file(logfile));
+
+try{
+    log4js.loadAppender('file');
+    logfile = '/var/log/wstun/wstun.log';
+    loglevel = 'debug';
+    log4js.addAppender(log4js.appenders.file(logfile));
+}
+catch (err) {
+    console.log("error log folder creation")
+}
+
 var logger = log4js.getLogger('main');
 logger.setLevel(loglevel);
 
