@@ -1,136 +1,108 @@
-# WSTUN - Tunnels and Reverse Tunnels over WebSocket for Node.js
-
-[![npm version](https://badge.fury.io/js/%40mdslab%2Fwstun.svg)](https://badge.fury.io/js/%40mdslab%2Fwstun)
+# WSTUN - Modified for Data Gateway Server and Data Gateway Client
 
 ## Overview
-
-A set of Node.js tools to establish TCP tunnels (or TCP reverse tunnels) over WebSocket connections for circumventing the problem of directly connect to hosts behind a strict firewall or without public IP. It also supports WebSocket Secure (wss) connections.
+See [readme](readme-wstun.md) of `@mdslab/wstun`
 
 ## Installation
-```
-npm install @mdslab/wstun
-```
+1. Download source code and go to the root directory of `majiangl/mstun`
+2. Run `npm install` to install all dependencies.
+3. Run `npm link` to expose `wstun` cmd globally.
 
-## Usage (from a Node.js application)
-
-### Instantiation of a tunnel server 
-```JavaScript
-var wstun = require("@mdslab/wstun");
-
-// without security
-server = new wstun.server();
-
-// or with security (<PRIVATE-KEY-PATH> and <PUBLIC-KEY-PATH> are the paths of the private and public keys in .pem formats)
-server = new wstun.server({ssl:true, key:"<PRIVATE-KEY-PATH>", cert:"<PUBLIC-KEY-PATH>"});
-
-//start the server (<PORT> is the listening port)
-server.start(<PORT>)
+## DGS Usage
+```javascript
+// start server
+wstun -r -s 8080
 ```
 
-### Implementation of a tunnel client
-```JavaScript
-var wstun = require("@mdslab/wstun");
+### Get token
+```text
+GET http://localhost:8080/token
 
-client = new wstun.client();
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 38
+ETag: W/"26-OnijoHwIHbgqooKaIW/fxvGiQAA"
+Date: Wed, 08 Jul 2020 04:23:28 GMT
+Connection: keep-alive
 
-// without security
-wstunHost = 'ws://wstunServerIP:wstunPort';
-
-// or with security 
-wstunHost = 'wss://wstunServerIP:wstunPort';
-
-// <localPort> is the port on the localhost on which the tunneled service will be reachable
-// <remoteHost>:<remotePort> is the endpoint of the service to be tunneled
-client.start(<localPort>, wstunHost, '<remoteHost>:<remotePort>');
+"95d9b8e6-39fb-46cd-a401-7d7f9119f710"
 ```
 
-### Instantiation of a reverse tunnel server
-```JavaScript
-var wstun = require("@mdslab/wstun");
+### Get list of registered clients (tray services)
+```text
+GET http://localhost:8080/clients
 
-// without security
-reverse_server = new wstun.server_reverse();
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 2
+ETag: W/"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w"
+Date: Wed, 08 Jul 2020 04:34:35 GMT
+Connection: keep-alive
 
-// or with security (<PRIVATE-KEY-PATH> and <PUBLIC-KEY-PATH> are the paths of the private and public keys in .pem formats)
-reverse_server = new wstun.server_reverse({ssl:true, key:"<PRIVATE-KEY-PATH>", cert:"<PUBLIC-KEY-PATH>"});
-
-//start the server (<PORT> is the listening port)
-reverse_server.start(<PORT>);
-
-``` 
-### Implementation of a reverse tunnel client
-```JavaScript   
-var wstun = require("reverse-wstunnel");
-
-reverse_client = new wstun.client_reverse();
-
-// without security
-wstunHost = 'ws://wstunServerIP:wstunPort';
-
-// or with security 
-wstunHost = 'wss://wstunServerIP:wstunPort';
-
-// <publicPort> is the port on the reverse tunnel server on which the tunneled service will be reachable
-// <remoteHost>:<remotePort> is the endpoint of the service to be reverse tunneled
-reverse_client.start(<publicPort>, wstunHost, '<remoteHost>:<remotePort>');
+[{"id": "test"}]
 ```
 
-## Usage (from command line)
-A command line tool (wstun.js) is also available in the bin directory.
+### request available port
+```text
+POST http://localhost:8080/availableport
 
-Examples about how to run a tunnel server:
-```
-//without security
-./wstun.js -s 8080
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 81
+ETag: W/"51-fs6jVncwj5ob5fovjIPuxuKIycQ"
+Date: Wed, 08 Jul 2020 04:39:39 GMT
+Connection: keep-alive
 
-//with security
-./wstun.js -s 8080 --ssl=true --key="<PRIVATE-KEY-PATH>" --cert="<PUBLIC-KEY-PATH>"
-```
-Examples about how to run a tunnel client:
-```
-//without security
-./wstun.js -t 33:2.2.2.2:33 ws://wstunServerIP:8080 
-
-//with security
-./wstun.js -t 33:2.2.2.2:33 wss://wstunServerIP:8080
-```
-In both examples, connections to localhost:33 on the client will be tunneled to 2.2.2.2:33 through the Websocket connection with the server. Note that the decision about the final destination of the tunnel is up to the client. Alternatively, it is possible to lock the final destination of the tunnel on the server side. 
-
-Examples about how to run a tunnel server locking the final tunnel destination: 
-```
-//without security 
-./wstun.js -s 8080 -t 2.2.2.2:33
-
-//with security
-./wstun.js -s 8080 -t 2.2.2.2:33 --ssl=true --key="<PRIVATE-KEY-PATH>" --cert="<PUBLIC-KEY-PATH>"
-```
-Examples about how to run a tunnel client when the final tunnel destination has been locked by the server:
-```
-//without security
-./wstun.js -t 33 ws://wstunServerIP:8080 
-
-//with security
-./wstun.js -t 33 wss://wstunServerIP:8080
+{
+  "port": 57255,
+  "token": "95d9b8e6-39fb-46cd-a401-7d7f9119f710"
+}
 ```
 
-Examples about how to run a reverse tunnel server:
-```
-//without security
-./wstun.js -r -s 8080
+### Request available port and return port of tray ws tunnel
+```text
+POST http://localhost:8080/availableport
 
-//with security
-./wstun.js -r -s 8080 --ssl=true --key="<PRIVATE-KEY-PATH>" --cert="<PUBLIC-KEY-PATH>"
-```
-Examples about how to run a reverse tunnel client:
-```
-//without security
-./wstun.js -r6666:2.2.2.2:33 ws://server:8080
+cid=test
 
-//with security 
-./wstun.js -r6666:2.2.2.2:33 wss://server:8080
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 81
+ETag: W/"51-aZoi+f6MfcSHUwlYvJl2coUBQnY"
+Date: Wed, 08 Jul 2020 04:37:06 GMT
+Connection: keep-alive
+
+{
+  "port": 57245,
+  "token": "95d9b8e6-39fb-46cd-a401-7d7f9119f710",
+  "clientPort": "3306"
+}
 ```
-In the above examples, the client asks the server to open a TCP server on port 6666 and all connections on this port are tunneled to the client that is directely connected to 2.2.2.2:33.
 
+### Close ws tunnel by port
+```text
+DELETE http://localhost:8080/ws/3306
 
-## Logging system
-WSTUN uses Log4js library to manage its logs in /var/log/wstun/
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 64
+ETag: W/"40-IjZVx+QRCNTrAi8IdDEvyRt4MR0"
+Date: Wed, 08 Jul 2020 04:41:21 GMT
+Connection: keep-alive
+
+"Web socket tunnel related to port 3306 is closed successfully."
+```
+
+## DGC Usage
+```javascript
+// create a ws tunnel to server with token
+wstun -r3306:10.197.34.164:3306 ws://localhost:8080 --tk=95d9b8e6-39fb-46cd-a401-7d7f9119f710
+
+// client(tray service) creates a ws tunnel and register itself
+wstun -r3306:10.197.34.164:3306 ws://localhost:8080 --tk=95d9b8e6-39fb-46cd-a401-7d7f9119f710 --cid=test
+```
