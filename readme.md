@@ -4,7 +4,7 @@
 See [readme](readme-wstun.md) of `@mdslab/wstun`
 
 ## Installation
-1. Download source code and go to the root directory of `majiangl/mstun`
+1. Download source code and go to the root directory.
 2. Run `npm install` to install all dependencies.
 3. Run `npm link` to expose `wstun` cmd globally.
 
