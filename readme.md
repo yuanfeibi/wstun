@@ -29,9 +29,9 @@ Connection: keep-alive
 "95d9b8e6-39fb-46cd-a401-7d7f9119f710"
 ```
 
-### Get list of registered clients (tray services)
+### Get list of registered trays
 ```text
-GET http://localhost:8080/clients
+GET http://localhost:8080/trays
 
 HTTP/1.1 200 OK
 X-Powered-By: Express
@@ -41,7 +41,7 @@ ETag: W/"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w"
 Date: Wed, 08 Jul 2020 04:34:35 GMT
 Connection: keep-alive
 
-[{"id": "test"}]
+[{"id": "test","name": "test"}]
 ```
 
 ### request available port
@@ -66,7 +66,7 @@ Connection: keep-alive
 ```text
 POST http://localhost:8080/availableport
 
-cid=test
+{"trayId":"test"}
 
 HTTP/1.1 200 OK
 X-Powered-By: Express
@@ -79,7 +79,7 @@ Connection: keep-alive
 {
   "port": 57245,
   "token": "95d9b8e6-39fb-46cd-a401-7d7f9119f710",
-  "clientPort": "3306"
+  "trayPort": "3306"
 }
 ```
 
@@ -101,8 +101,8 @@ Connection: keep-alive
 ## DGC Usage
 ```javascript
 // create a ws tunnel to server with token
-wstun -r3306:10.197.34.164:3306 ws://localhost:8080 --tk=95d9b8e6-39fb-46cd-a401-7d7f9119f710
+wstun -r3306:10.197.34.164:3306 ws://localhost:8080 --token=95d9b8e6-39fb-46cd-a401-7d7f9119f710
 
 // client(tray service) creates a ws tunnel and register itself
-wstun -r3306:10.197.34.164:3306 ws://localhost:8080 --tk=95d9b8e6-39fb-46cd-a401-7d7f9119f710 --cid=test
+wstun -r3306:10.197.34.164:3306 ws://localhost:8080 --token=95d9b8e6-39fb-46cd-a401-7d7f9119f710 --trayid=test --trayname=test
 ```
